@@ -1,0 +1,27 @@
+{
+    "name": "omaicode/ocms-appearance",
+    "description": "Appearance module for OCMS",
+    "require": {
+        "php": ">=7.3",
+        "omaicode/ocms-core": "*"
+    },
+    "authors": [
+        {
+            "name": "Bieber Kieu",
+            "email": "thien.kt@omaicode.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Appearance\\": ""
+        }
+    }
+}

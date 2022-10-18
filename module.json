@@ -1,0 +1,25 @@
+{
+    "name": "Appearance",
+    "alias": "appearance",
+    "type": "composer",
+    "description": "",
+    "keywords": [],
+    "priority": 1,
+    "providers": [
+        "Modules\\Appearance\\Providers\\AppearanceServiceProvider",
+        "Modules\\Appearance\\Providers\\PackageServiceProvider",
+        "Modules\\Appearance\\Providers\\ShortcodesServiceProvider"
+    ],
+    "aliases": {
+        "Theme": "Modules\\Appearance\\Facades\\ThemesManager",
+        "Shortcode": "Modules\\Appearance\\Facades\\Shortcode"
+    },
+    "files": [],
+    "requires": [
+        {
+            "name": "omaicode/ocms-core",
+            "version": "1.0.0",
+            "type": "module"
+        }
+    ]
+}
