@@ -7,8 +7,8 @@
     "priority": 1,
     "providers": [
         "Modules\\Appearance\\Providers\\AppearanceServiceProvider",
-        "Modules\\Appearance\\Providers\\PackageServiceProvider",
-        "Modules\\Appearance\\Providers\\ShortcodesServiceProvider"
+        "Modules\\Appearance\\Providers\\ThemeServiceProvider",
+        "Modules\\Appearance\\Providers\\ShortcodeServiceProvider"
     ],
     "aliases": {
         "Theme": "Modules\\Appearance\\Facades\\ThemesManager",

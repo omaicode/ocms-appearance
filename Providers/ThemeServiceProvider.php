@@ -15,11 +15,16 @@ use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Modules\Appearance\Compilers\ShortcodeCompiler;
+use Modules\Appearance\Facades\Shortcode;
+use Modules\Appearance\Supports\Shortcode as SupportsShortcode;
+use Modules\Appearance\View\Factory as ShortcodeViewFactory;
 use ReflectionClass;
 
-class PackageServiceProvider extends ServiceProvider
+class ThemeServiceProvider extends ServiceProvider
 {
     /**
      * Our root directory for this package to make traversal easier.
@@ -59,7 +64,7 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // $this->registerConfigs();
+        $this->registerShortcode();
 
         $this->app->singleton('themes-manager', function () {
             return new ThemesManager(
@@ -81,7 +86,12 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [ThemesManager::class];
+        return [
+            'shortcode',
+            'shortcode.compiler',
+            'view',            
+            ThemesManager::class
+        ];
     }
 
     /**
@@ -130,6 +140,36 @@ class PackageServiceProvider extends ServiceProvider
                 Commands\ListThemes::class,
                 Generators\MakeTheme::class,
             ]);
+        }
+    }  
+
+    protected function registerShortcode()
+    {
+        $this->app->singleton('shortcode.compiler', function ($app) {
+            return new ShortcodeCompiler();
+        });
+
+        $this->app->singleton('shortcode', function ($app) {
+            return new SupportsShortcode($app['shortcode.compiler']);
+        });        
+
+        $finder = $this->app['view']->getFinder();
+        $this->app->singleton('view', function ($app) use ($finder) {
+            $resolver = $app['view.engine.resolver'];
+            $env = new ShortcodeViewFactory($resolver, $finder, $app['events'], $app['shortcode.compiler']);
+            $env->setContainer($app);
+            $env->share('app', $app);
+
+            return $env;
+        });        
+
+        // Register custom shortcodes
+        $files = File::allFiles(addon_path());
+        foreach($files as $file) {
+            $class = "\\Addons\\Shortcodes\\{$file}";
+            if(property_exists($class, 'tag') && method_exists($class, 'register')) {
+                Shortcode::register($class::$tag, $class);
+            }
         }
     }
 }

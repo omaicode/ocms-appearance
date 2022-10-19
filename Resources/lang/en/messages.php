@@ -7,5 +7,8 @@ return [
     'active' => 'Active',
     'activated' => 'Activated',
     'theme_not_exists' => "Selected theme doesn't exists on the system.",
-    'changed_theme_success' => "Changed theme successfully!"
+    'changed_theme_success' => "Changed theme successfully!",
+    'shortcodes' => [
+        'partial' => 'Partial'
+    ]
 ];

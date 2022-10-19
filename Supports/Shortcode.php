@@ -1,4 +1,5 @@
-<?php namespace Modules\Appearance;
+<?php 
+namespace Modules\Appearance\Supports;
 
 use Modules\Appearance\Compilers\ShortcodeCompiler;
 
@@ -86,5 +87,15 @@ class Shortcode
     public function strip($value)
     {
         return $this->compiler->strip($value);
+    }
+
+    /**
+     * Get compiler
+     * 
+     * @return ShortcodeCompiler 
+     */
+    public function compiler()
+    {
+        return $this->compiler;
     }
 }
