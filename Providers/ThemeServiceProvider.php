@@ -164,6 +164,7 @@ class ThemeServiceProvider extends ServiceProvider
         });        
 
         // Register custom shortcodes
+        File::ensureDirectoryExists(addon_path());
         $files = File::allFiles(addon_path());
         foreach($files as $file) {
             $class = "\\Addons\\Shortcodes\\{$file}";
