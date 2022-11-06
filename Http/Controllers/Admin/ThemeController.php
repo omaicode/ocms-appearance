@@ -31,6 +31,10 @@ class ThemeController extends Controller
 
         $breadcrumb = [
             [
+                'title'  => __('appearance::messages.appearance'), 
+                'url'    => '#',
+            ],
+            [
                 'title'  => __('appearance::messages.themes'), 
                 'url'    => route('admin.appearance.themes'),
             ]

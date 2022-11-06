@@ -4,7 +4,7 @@
     "type": "composer",
     "description": "",
     "keywords": [],
-    "priority": 1,
+    "priority": 3,
     "providers": [
         "Modules\\Appearance\\Providers\\AppearanceServiceProvider",
         "Modules\\Appearance\\Providers\\ThemeServiceProvider",

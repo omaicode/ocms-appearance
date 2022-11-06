@@ -270,6 +270,7 @@ class Theme
             $this->setStatus(true);
             $this->registerViews($defaultViewPaths, $defaultMailViewPaths);
             $this->registerTranlastions();
+            $this->registerConfigs();
 
             if ($withEvent) {
                 event(new ThemeEnabled($this->getName()));
@@ -407,6 +408,21 @@ class Theme
 
             return $path;
         }, $paths);
+    }
+
+    protected function registerConfigs()
+    {
+        $config_path = $this->getPath('config/options.php');
+
+        if(File::exists($config_path)) {
+            $options = File::requireOnce($config_path);
+            
+            if(is_array($options)) {
+                foreach($options as $key => $value) {
+                    Config::set('theme.'.$key, $value);
+                }
+            }
+        }
     }
 
     /**

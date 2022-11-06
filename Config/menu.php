@@ -15,5 +15,12 @@ return [
         'parent_id'=> 'ocms-menu-appearance',
         'name' => 'appearance::messages.themes',
         'url'  => route('admin.appearance.themes')
-    ]
+    ],
+    [
+        'id' => 'ocms-menu-appearance-theme-options',
+        'priority' => 0,
+        'parent_id'=> 'ocms-menu-appearance',
+        'name' => 'appearance::messages.theme_options',
+        'url'  => route('admin.appearance.theme-options')
+    ],
 ];
