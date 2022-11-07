@@ -3,7 +3,7 @@
         <h5 class="card-title mb-0">@lang('appearance::messages.installed_themes')</h5>
     </div>
     <div class="card-body p-0">
-        @foreach($themes as $theme)
+        @foreach($themes as $key => $theme)
         @php
             $disabled = $current_theme ? $current_theme->name == $theme->name : ($themes->count() <= 1 ? true : false);
             $thumbnail = '/images/default-theme.png';
@@ -29,10 +29,13 @@
                                     @lang('appearance::messages.activated')
                                 </button>                                
                             @else
-                                <button type="button" class="btn btn-success text-white btn-sm">
-                                    <i class="fas fa-check"></i>
-                                    @lang('appearance::messages.active')
-                                </button>
+                                <form method="POST" action="{{ route('admin.appearance.themes.set') }}">
+                                    @csrf
+                                    <button type="submit" name="theme" value="{{ $theme->name }}" class="btn btn-success text-white btn-sm">
+                                        <i class="fas fa-check"></i>
+                                        @lang('appearance::messages.active')
+                                    </button>
+                                </form>
                             @endif
                         </div>
                     </div>

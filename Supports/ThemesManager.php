@@ -174,8 +174,8 @@ class ThemesManager
     public function current(): ?Theme
     {
         return $this->themes
-            ->filter(function ($theme) {
-                return $theme->enabled();
+            ->filter(function ($theme, $key) {
+                return $key === config('appearance.currentTheme', config('appearance.fallbackTheme', 'omaicode/ocms-theme-swipe'));
             })->first();
     }
 

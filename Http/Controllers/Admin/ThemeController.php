@@ -46,15 +46,15 @@ class ThemeController extends Controller
         ->body('appearance::themes', compact('themes', 'current_theme'));
     }
 
-    public function setTheme($theme)
+    public function setTheme()
     {
-        $theme = Theme::has($theme);
+        $theme = $this->request->get('theme');
 
-        if(!$theme) {
+        if(!Theme::has($theme)) {
             return redirect()->route('admin.appearance.themes')->with('toast_error', __('appearance::messages.theme_not_exists'));
         }
 
-        Config::set('appearance_currentTheme', $theme);
+        Config::set('appearance__currentTheme', $theme);
         Theme::set($theme);
 
         return redirect()->route('admin.appearance.themes')->with('toast_success', __('appearance::messages.changed_theme_success'));
