@@ -1,6 +1,7 @@
 {
     "name": "omaicode/ocms-appearance",
     "description": "Appearance module for OCMS",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=7.3",
         "omaicode/ocms-core": "*"
