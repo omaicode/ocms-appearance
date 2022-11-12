@@ -4,7 +4,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.3",
-        "omaicode/ocms-core": "*"
+        "omaicode/ocms-core": "*@dev"
     },
     "authors": [
         {
