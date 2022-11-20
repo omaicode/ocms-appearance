@@ -7,20 +7,23 @@ return [
         'parent_id' => null,
         'name' => 'appearance::messages.appearance',
         'icon' => 'fas fa-paint-brush',
-        'url' => '#'
+        'url' => '#',
+        'permissions' => ['appearance.view']
     ],
     [
         'id' => 'ocms-menu-appearance-themes',
         'priority' => 0,
         'parent_id'=> 'ocms-menu-appearance',
         'name' => 'appearance::messages.themes',
-        'url'  => route('admin.appearance.themes')
+        'url'  => route('admin.appearance.themes'),
+        'permissions' => ['appearance.view']
     ],
     [
         'id' => 'ocms-menu-appearance-theme-options',
         'priority' => 0,
         'parent_id'=> 'ocms-menu-appearance',
         'name' => 'appearance::messages.theme_options',
-        'url'  => route('admin.appearance.theme-options')
+        'url'  => route('admin.appearance.theme-options'),
+        'permissions' => ['appearance.view']
     ],
 ];
