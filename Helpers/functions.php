@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\View;
+use Modules\Appearance\Enums\MenuPositionEnum;
+use Modules\Appearance\Repositories\MenuRepository;
 
 if (!function_exists('page_title')) {
 	/**
@@ -102,4 +104,36 @@ if (!function_exists('theme_image')) {
 	{
 		return \Theme::image($asset, $alt, $class, $attributes, $absolutePath, $version);
 	}
+}
+
+if (!function_exists('isValidJson')) {
+    function isValidJson(string $str) {
+        $str = trim($str);
+        if (!empty($str)) {
+            @json_decode($str);
+            return (json_last_error() === JSON_ERROR_NONE);
+        }
+        return false;        
+    }
+}
+
+if (!function_exists('primary_menu')) {
+    function primary_menu()
+    {
+        return app(MenuRepository::class)->getAllWithChilds(MenuPositionEnum::PRIMARY_MENU);
+    }
+}
+
+if (!function_exists('secondary_menu')) {
+    function secondary_menu()
+    {
+        return app(MenuRepository::class)->getAllWithChilds(MenuPositionEnum::SECONDARY_MENU);
+    }
+}
+
+if (!function_exists('top_menu')) {
+    function top_menu()
+    {
+        return app(MenuRepository::class)->getAllWithChilds(MenuPositionEnum::TOP_MENU);
+    }
 }

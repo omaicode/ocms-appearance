@@ -20,10 +20,18 @@ return [
     ],
     [
         'id' => 'ocms-menu-appearance-theme-options',
-        'priority' => 0,
+        'priority' => 1,
         'parent_id'=> 'ocms-menu-appearance',
         'name' => 'appearance::messages.theme_options',
         'url'  => route('admin.appearance.theme-options'),
+        'permissions' => ['appearance.view']
+    ],
+    [
+        'id' => 'ocms-menu-appearance-menu',
+        'priority' => 2,
+        'parent_id'=> 'ocms-menu-appearance',
+        'name' => 'appearance::messages.menus',
+        'url'  => route('admin.appearance.menus.index'),
         'permissions' => ['appearance.view']
     ],
 ];

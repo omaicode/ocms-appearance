@@ -1,6 +1,14 @@
 @component('appearance::theme-options.layout')
     <x-forms::group
         mode="input"
+        :label="__('appearance::messages.form.site_name')"
+        :placeholder="__('appearance::messages.form.site_name_placeholder')"
+        name="site_name"
+        :value="old('site_name', $site_name)"
+        required
+    />
+    <x-forms::group
+        mode="input"
         :label="__('appearance::messages.form.site_title')"
         :placeholder="__('appearance::messages.form.site_title_placeholder')"
         name="site_title"

@@ -29,7 +29,8 @@ class ThemeOptionController extends Controller
                 'title'  => __('appearance::messages.theme_options'), 
                 'url'    => route('admin.appearance.theme-options'),
             ]
-        ];            
+        ];           
+
         $theme = config('appearance.theme');
 
         return $page

@@ -4,7 +4,7 @@ namespace Modules\Appearance\Shortcodes;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Throwable;
 
-class Partial
+class SubPartial
 {
     /**
      * Register shortcode
@@ -19,7 +19,7 @@ class Partial
     public function register($shortcode, $content, $compiler, $name, $viewData)
     {
         try {
-            return view('partials.'.$shortcode->name, ['data' => $shortcode, 'content' => $content, 'viewData' => $compiler])->render();
+            return view('partials.'.$shortcode->name, ['data' => $shortcode, 'content' => $content])->render();
         } catch (Throwable $e) {
             return '';
         }
@@ -33,8 +33,8 @@ class Partial
     public static function info(): array
     {
         return [
-            'tag'  => 'partial',
-            'name' =>  __('appearance::messages.shortcodes.partial'),
+            'tag'  => 'sub-partial',
+            'name' =>  __('appearance::messages.shortcodes.sub-partial'),
             'attributes' => [
                 'name' => 'partial_name'
             ]

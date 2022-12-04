@@ -83,6 +83,7 @@ return [
     ],
 
     'theme' => [
+        'site_name'        => 'OCMS',
         'site_title'       => 'Content Management, Modular Design, Theme System',
         'site_description' => 'We are website outsourcing team. With many years of experience, we make sure every project done very fast, in time with high quality, flexible and easy to scale.',
         'site_keywords'    => '',
@@ -93,7 +94,9 @@ return [
         'website'          => 'https://cms.omaicode.com',
         'email'            => 'support@omaicode.com',
         'copyright'        => '©2022 Omaicode. All right reserved.',
+        'phone'            => '(+1)555-555-555',
         'logo'             => '',
-        'favicon'          => ''
+        'favicon'          => '',
+        'footer_description' => 'OCMS of Companies consists of a number of entities, each specializing in sectors of immigration, investment, education, and foreign worker recruitment.'
     ]
 ];
