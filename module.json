@@ -14,7 +14,9 @@
         "Theme": "Modules\\Appearance\\Facades\\ThemesManager",
         "Shortcode": "Modules\\Appearance\\Facades\\Shortcode"
     },
-    "files": [],
+    "files": [
+        "./Helpers/functions.php"
+    ],
     "requires": [
         {
             "name": "omaicode/ocms-core",

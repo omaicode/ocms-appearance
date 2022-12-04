@@ -31,8 +31,6 @@ class AppearanceServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        File::requireOnce(module_path($this->moduleName, 'Helpers/functions.php'));
-
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
