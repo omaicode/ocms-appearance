@@ -137,3 +137,10 @@ if (!function_exists('top_menu')) {
         return app(MenuRepository::class)->getAllWithChilds(MenuPositionEnum::TOP_MENU);
     }
 }
+
+if(!function_exists('get_theme_image')) {
+    function get_theme_image($key)
+    {
+        return uploadPath(config('appearance.theme.'.$key));
+    }
+}

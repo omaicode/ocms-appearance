@@ -90,6 +90,7 @@ class ThemeOptionController extends Controller
     public function update()
     {
         $request_data = $this->request->only([
+            'site_name',
             'site_title' ,
             'site_description',
             'site_keywords',
@@ -101,7 +102,11 @@ class ThemeOptionController extends Controller
             'email',
             'copyright',
             'logo',
-            'favicon'        
+            'favicon',
+            'page_background',
+            'title_background',
+            'thumbnail_background',
+            'footer_background'     
         ]);
         $data         = [];
 
@@ -109,7 +114,7 @@ class ThemeOptionController extends Controller
             $data["appearance__theme__{$key}"] = $value;
         }
         
-        $file_keys = ['seo_og_image', 'logo', 'favicon'];
+        $file_keys = ['seo_og_image', 'logo', 'favicon', 'page_background', 'title_background', 'thumbnail_background', 'footer_background'];
 
         foreach($file_keys as $key) {
             if($this->request->hasFile($key)) {
