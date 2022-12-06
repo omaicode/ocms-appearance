@@ -3,7 +3,7 @@
 return [
     [
         'id' => 'ocms-menu-appearance',
-        'priority' => 2,
+        'priority' => 97,
         'parent_id' => null,
         'name' => 'appearance::messages.appearance',
         'icon' => 'fas fa-paint-brush',
