@@ -102,5 +102,10 @@ return [
         'title_background' => '',
         'footer_background'=> '',
         'thumbnail_background'=> '',
+        'facebook' => '#',
+        'twitter' => '#',
+        'youtube' => '#',
+        'instagram' => '#',
+        'linkedin' => '#',
     ]
 ];

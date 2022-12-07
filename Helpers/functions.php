@@ -139,8 +139,19 @@ if (!function_exists('top_menu')) {
 }
 
 if(!function_exists('get_theme_image')) {
-    function get_theme_image($key)
+    function get_theme_image($key, $default = null)
     {
+        if(blank(config('appearance.theme.'.$key))) {
+            return $default;
+        }
+        
         return uploadPath(config('appearance.theme.'.$key));
+    }
+}
+
+if(!function_exists('get_theme_option')) {
+    function get_theme_option($key, $default = null)
+    {
+        return config('appearance.theme.'.$key, $default);
     }
 }

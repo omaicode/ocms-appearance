@@ -87,6 +87,30 @@ class ThemeOptionController extends Controller
         ->body('appearance::theme-options.images', $theme);
     }
 
+    public function socials(AdminPage $page)
+    {
+        $breadcrumb = [
+            [
+                'title'  => __('appearance::messages.appearance'), 
+                'url'    => '#',
+            ],            
+            [
+                'title'  => __('appearance::messages.theme_options'), 
+                'url'    => route('admin.appearance.theme-options'),
+            ],
+            [
+                'title'  => __('appearance::messages.social_links'), 
+                'url'    => route('admin.appearance.theme-options.socials'),
+            ],
+        ];            
+        $theme = config('appearance.theme');
+
+        return $page
+        ->title(__('appearance::messages.theme_options'))
+        ->breadcrumb($breadcrumb)
+        ->body('appearance::theme-options.socials', $theme);
+    }
+
     public function update()
     {
         $request_data = $this->request->only([
@@ -106,7 +130,12 @@ class ThemeOptionController extends Controller
             'page_background',
             'title_background',
             'thumbnail_background',
-            'footer_background'     
+            'footer_background'   ,
+            'facebook',
+            'twitter',
+            'instagram',
+            'youtube',
+            'linkedin'  
         ]);
         $data         = [];
 

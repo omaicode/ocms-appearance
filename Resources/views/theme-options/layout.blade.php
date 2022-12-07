@@ -22,6 +22,14 @@
                             @lang('appearance::messages.seo')
                         </a>
                     </li>
+                    <li class="nav-item mb-2 pe-0">
+                        <a 
+                            class="nav-link @if(request()->routeIs('admin.appearance.theme-options.socials'))active @endif" 
+                            href="{{ route('admin.appearance.theme-options.socials') }}"
+                        >
+                            @lang('appearance::messages.social_links')
+                        </a>
+                    </li>
                     <li class="nav-item pe-0">
                         <a 
                             class="nav-link @if(request()->routeIs('admin.appearance.theme-options.images'))active @endif" 

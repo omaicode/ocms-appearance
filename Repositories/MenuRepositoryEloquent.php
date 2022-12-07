@@ -46,7 +46,8 @@ class MenuRepositoryEloquent extends BaseRepository implements MenuRepository
     public function getAllWithChilds($position): Collection
     {
         return $this->getModel()
-        ->with('childs')
+        ->with(['childs' => fn($q) => $q->where('active', true)])
+        ->where('active', true)
         ->whereNull('parent_id')
         ->where('position', $position)
         ->orderBy('order', 'ASC')
@@ -55,6 +56,6 @@ class MenuRepositoryEloquent extends BaseRepository implements MenuRepository
 
     public function getRootMenus($position): Collection
     {
-        return $this->findWhere(['position' => $position, 'parent_id' => null]);
+        return $this->findWhere(['position' => $position, 'parent_id' => null, 'active' => true]);
     }
 }

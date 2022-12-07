@@ -55,4 +55,5 @@ return [
     "primary-menu" => "Primary menu",
     "secondary-menu" => "Secondary menu",
     "top-menu" => "Top menu",
+    "social_links" => "Social Links"
 ];
