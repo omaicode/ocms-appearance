@@ -3,6 +3,7 @@
 namespace Modules\Appearance\Repositories;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use InvalidArgumentException;
 use Omaicode\Repository\Eloquent\BaseRepository;
 use Omaicode\Repository\Criteria\RequestCriteria;
@@ -45,13 +46,19 @@ class MenuRepositoryEloquent extends BaseRepository implements MenuRepository
      */
     public function getAllWithChilds($position): Collection
     {
-        return $this->getModel()
-        ->with(['childs' => fn($q) => $q->where('active', true)])
-        ->where('active', true)
-        ->whereNull('parent_id')
-        ->where('position', $position)
-        ->orderBy('order', 'ASC')
-        ->get();        
+        if(Cache::has('menu-'.$position)) {
+            return Cache::get('menu-'.$position);
+        }
+
+        return Cache::rememberForever('menu-'.$position, function() use ($position) {
+            return $this->getModel()
+            ->with(['childs' => fn($q) => $q->where('active', true)])
+            ->where('active', true)
+            ->whereNull('parent_id')
+            ->where('position', $position)
+            ->orderBy('order', 'ASC')
+            ->get();
+        });
     }
 
     public function getRootMenus($position): Collection

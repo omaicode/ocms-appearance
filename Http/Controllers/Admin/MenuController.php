@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Modules\Appearance\Enums\MenuPositionEnum;
@@ -124,7 +125,8 @@ class MenuController extends Controller
             } else {
                 $this->repository->create($data);
             }
-
+            
+            Cache::forget('menu-'.$data['position']);
             DB::commit();
             return redirect()
             ->route('admin.appearance.menus.index', ['position' => $request->position])
@@ -144,7 +146,12 @@ class MenuController extends Controller
     public function destroy($id = null)
     {
         if($id) {
-            $this->repository->delete($id);
+            $menu = $this->repository->find($id);
+            if($menu) {
+                Cache::forget('menu-'.$menu->position);
+                $menu->delete();
+            }
+
             return ApiResponse::success("Deleted menu item");
         }
 
