@@ -16,6 +16,15 @@
     "laravel-mix": "^6.0.31",
     "laravel-mix-merge-manifest": "^2.0.0",
     "lodash": "^4.17.21",
-    "postcss": "^8.3.7"
+    "postcss": "^8.3.7",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^12.1.0"
+  },
+  "dependencies": {
+    "codemirror-editor-vue3": "^2.1.7",
+    "text": "requirejs/text",
+    "vue": "^3.2.45",
+    "vue-loader": "^17.0.1"
   }
 }

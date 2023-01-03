@@ -2,6 +2,15 @@
 
 return [
     [
+        'id' => 'ocms-menu-partials',
+        'priority' => 96,
+        'parent_id' => null,
+        'name' => 'appearance::messages.partials',
+        'icon' => 'fas fa-cubes',
+        'url' => route('admin.appearance.partials.index'),
+        'permissions' => ['appearance.partials.view']
+    ],
+    [
         'id' => 'ocms-menu-appearance',
         'priority' => 97,
         'parent_id' => null,
