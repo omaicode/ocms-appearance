@@ -34,6 +34,7 @@ return [
         'address'   => 'Address',
         'website'   => 'Website',
         'email'     => 'Email',
+        'phone'     => 'Phone',
         'copyright' => 'Copyright',
         'seo_title' => 'SEO title',
         'seo_description' => 'SEO description',

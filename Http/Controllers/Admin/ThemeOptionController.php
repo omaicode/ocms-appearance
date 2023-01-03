@@ -124,6 +124,7 @@ class ThemeOptionController extends Controller
             'address',
             'website',
             'email',
+            'phone',
             'copyright',
             'logo',
             'favicon',

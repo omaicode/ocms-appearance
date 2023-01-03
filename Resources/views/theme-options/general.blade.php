@@ -49,6 +49,12 @@
     />                        
     <x-forms::group
         mode="input"
+        :label="__('appearance::messages.form.phone')"
+        name="phone"
+        :value="old('phone', $phone)"
+    />                        
+    <x-forms::group
+        mode="input"
         :label="__('appearance::messages.form.copyright')"
         name="copyright"
         :value="old('copyright', $copyright)"
