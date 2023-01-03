@@ -1,3 +1,7 @@
+.partial-editor-wrapper {
+    position: relative;
+}
+
 .partial-loading {
     position: absolute;
     display: flex;
@@ -72,7 +76,15 @@
 
             &:hover {
                 background-color: var(--bs-gray-200);
-            }            
+            }      
+            
+            &.active {
+                background: var(--bs-success);
+                color: #fff;
+                &::before {
+                    color: #fff
+                }
+            }
         }
     }
 }
@@ -80,42 +92,73 @@
 .card-partial-content {
     border-left: 0;
     border-radius: 0;
+}
 
-    .partial-action {
-        cursor: pointer;
-        min-width: 1.5rem;
-        height: 1.5rem;
-        border-radius: 4px;
-        padding: 4px;
-        background-color: var(--bs-gray-200);
-        line-height: 0;
-        text-align: center;
-        margin-right: .5rem;
-        font-size: 16px;
+.partial-action {
+    cursor: pointer;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 4px;
+    padding: 4px;
+    background-color: var(--bs-gray-200);
+    line-height: 0;
+    text-align: center;
+    margin-right: .5rem;
+    font-size: 16px;
 
-        &:hover {
-            opacity: .75;
-        }
-
-        &:last-child {
-            margin-right: 0;
-        }
-
-        span {
-            margin-left: .35rem;
-            font-size: 14px;
-        }
+    &:hover {
+        opacity: .75;
     }
 
-    .partital-actions {
-        padding: .5rem .75rem;
-        border-bottom: 1px solid var(--bs-gray-200);
+    &:last-child {
+        margin-right: 0;
+    }
+
+    span {
+        margin-left: .35rem;
+        font-size: 14px;
+    }
+}
+
+.partital-actions {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid var(--bs-gray-200);
+    display: flex;
+    align-items: center;
+}
+
+.partial-content {
+    position: relative;
+    overflow: hidden;
+    height: 459px;
+
+    .CodeMirror {
+        padding: 0;
+        border: 0
+    }
+}
+
+.partial-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.5);
+    z-index: 1;
+
+    .partial-dialog--content {
+        width: 200px;
+        max-width: 100%;
+        background-color: #fff;
+        border: 1px solid var(--bs-gray-300);
+        padding: .5rem;
+    }
+
+    &.show {
         display: flex;
-        align-items: center;
-    }
-
-    .partial-content {
-        padding: .5rem .75rem;
-        min-height: 459px;
     }
 }

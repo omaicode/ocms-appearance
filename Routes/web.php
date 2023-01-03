@@ -28,7 +28,7 @@ Route::prefix(config('core.admin_prefix', 'admin'))->group(function() {
             Route::get('/', 'PartialController@index')->name('index');
             Route::get('/tree', 'PartialController@getTree')->name('tree');
             Route::post('/content', 'PartialController@getContent')->name('content');
-            Route::post('/put', 'PartialController@saveContent')->name('content.save');
+            Route::put('/content', 'PartialController@saveContent')->name('content.save');
             Route::post('/delete', 'PartialController@destroy')->name('content.delete');
         });
     });

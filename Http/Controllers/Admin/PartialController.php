@@ -8,6 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Modules\Core\Contracts\AdminPage;
 use Theme;
 
@@ -74,6 +75,7 @@ class PartialController extends Controller
                 $dir_splited = explode('/', $directory);
 
                 $tree[] = [
+                    'id'        => (string)Str::uuid(),
                     'name'      => $dir_splited[count($dir_splited) - 1],
                     'is_dir'    => true,
                     'is_open'   => true,
@@ -87,6 +89,7 @@ class PartialController extends Controller
             foreach($files as $file) {
                 if(strpos($file->getBasename(), '.blade.php') !== false) {
                     $tree[] = [
+                        'id'       => (string)Str::uuid(),
                         'name'     => $file->getBasename('.blade.php'),
                         'basename' => $file->getBasename(),
                         'is_dir'   => false,
@@ -128,9 +131,32 @@ class PartialController extends Controller
 
     public function saveContent(Request $request)
     {
-        if($request->filled('path') && File::exists($request->path) && $this->validPath($request->path)) {
+        if($request->filled('path')) {
+            $theme = Theme::current();
+            $full_path = explode("/", $request->path);
+            $path  = rtrim($theme->getPath(), '/')."/views/partials/".implode('/', $full_path);
+            
+            if(strpos($request->path, ".blade.php") === false) {                
+                $file_name = $full_path[count($full_path) - 1];
+
+                if(count($full_path) > 1) {
+                    unset($full_path[count($full_path) - 1]);
+                    $path  = rtrim($theme->getPath(), '/')."/views/partials/".implode('/', $full_path);
+                    File::ensureDirectoryExists($path);
+                } else {
+                    $path  = rtrim($theme->getPath(), '/')."/views/partials";
+                }
+
+                $path = $path."/{$file_name}.blade.php";
+            } else {
+                $path = $request->path;
+                if(!$this->validPath($path)) {
+                    return ApiResponse::success();
+                }                
+            }
+
             $content = $request->get('content', '');
-            File::put($request->path, $content);
+            File::put($path, $content);
         }
 
         return ApiResponse::success();
@@ -139,7 +165,13 @@ class PartialController extends Controller
     public function destroy(Request $request)
     {
         if($request->filled('path') && File::exists($request->path) && $this->validPath($request->path)) {
-            File::delete($request->path);
+            if(File::isFile($request->path)) {
+                File::delete($request->path);
+            }
+
+            if(File::isDirectory($request->path)) {
+                File::deleteDirectory($request->path);
+            }
         }
 
         return ApiResponse::success();
