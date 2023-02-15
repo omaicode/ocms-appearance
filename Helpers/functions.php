@@ -139,6 +139,13 @@ if (!function_exists('top_menu')) {
     }
 }
 
+if (!function_exists('get_menu')) {
+    function get_menu(string $type = 'primary_menu')
+    {
+        return app(MenuRepository::class)->getAllWithChilds(MenuPositionEnum::getValue($type));
+    }
+}
+
 if(!function_exists('get_theme_image')) {
     function get_theme_image($key, $default = null)
     {
