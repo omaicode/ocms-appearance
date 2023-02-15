@@ -96,6 +96,7 @@ return [
         'copyright'        => '©2022 Omaicode. All right reserved.',
         'phone'            => '(+1)555-555-555',
         'logo'             => '',
+        'logo_light'       => '',
         'favicon'          => '',
         'footer_description' => 'OCMS of Companies consists of a number of entities, each specializing in sectors of immigration, investment, education, and foreign worker recruitment.',
         'page_background'       => '',

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Modules\Appearance\Enums\MenuPositionEnum;
 use Modules\Appearance\Repositories\MenuRepository;
@@ -153,5 +154,23 @@ if(!function_exists('get_theme_option')) {
     function get_theme_option($key, $default = null)
     {
         return config('appearance.theme.'.$key, $default);
+    }
+}
+
+if(!function_exists('menu_render')) {
+    function menu_render(string $position, $view = 'appearance::default-menu.index')
+    {
+        $func = $position.'_menu';
+        if(!function_exists($func)) {
+            return [];
+        }
+
+        if(!View::exists($view)) {
+            Log::error("menu_render() -> Menu {$view} not found.");
+            return [];
+        }
+
+        $menu = $func();
+        return View::make($view, compact('menu'))->render();
     }
 }

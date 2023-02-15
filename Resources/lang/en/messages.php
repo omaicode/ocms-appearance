@@ -56,6 +56,10 @@ return [
     "primary-menu" => "Primary menu",
     "secondary-menu" => "Secondary menu",
     "top-menu" => "Top menu",
+    "footer-menu-1" => "Footer menu 1",
+    "footer-menu-2" => "Footer menu 2",
+    "footer-menu-3" => "Footer menu 3",
+    "footer-menu-4" => "Footer menu 4",
     "social_links" => "Social Links",
     "partials" => "Partials"
 ];

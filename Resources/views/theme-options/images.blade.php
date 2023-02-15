@@ -5,6 +5,11 @@
     :value="isset($logo) ? uploadPath($logo) : ''"                       
 />
 <x-forms::thumbnail
+    label="Logo Light"
+    name="logo_light"            
+    :value="isset($logo_light) ? uploadPath($logo_light) : ''"                       
+/>
+<x-forms::thumbnail
     label="Favicon"
     name="favicon"            
     :value="isset($favicon) ? uploadPath($favicon) : ''"                       

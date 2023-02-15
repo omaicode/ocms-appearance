@@ -127,6 +127,7 @@ class ThemeOptionController extends Controller
             'phone',
             'copyright',
             'logo',
+            'logo_light',
             'favicon',
             'page_background',
             'title_background',
@@ -144,7 +145,7 @@ class ThemeOptionController extends Controller
             $data["appearance__theme__{$key}"] = $value;
         }
         
-        $file_keys = ['seo_og_image', 'logo', 'favicon', 'page_background', 'title_background', 'thumbnail_background', 'footer_background'];
+        $file_keys = ['seo_og_image', 'logo', 'logo_light', 'favicon', 'page_background', 'title_background', 'thumbnail_background', 'footer_background'];
 
         foreach($file_keys as $key) {
             if($this->request->hasFile($key)) {
