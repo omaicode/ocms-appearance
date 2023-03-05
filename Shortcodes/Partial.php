@@ -2,6 +2,7 @@
 namespace Modules\Appearance\Shortcodes;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Partial
@@ -21,6 +22,7 @@ class Partial
         try {
             return view('partials.'.$shortcode->name, ['data' => $shortcode, 'content' => $content, 'viewData' => $compiler])->render();
         } catch (Throwable $e) {
+            Log::error($e);
             return '';
         }
     }
